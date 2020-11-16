@@ -30,7 +30,12 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        "img-src": ["'self'", "https://i.imgur.com", "https://media.giphy.com"],
+        "img-src": [
+          "'self'",
+          "https://i.imgur.com",
+          "https://media.giphy.com",
+          "https://m.media-amazon.com",
+        ],
       },
     },
   })
