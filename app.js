@@ -35,6 +35,8 @@ app.use(
           "https://i.imgur.com",
           "https://media.giphy.com",
           "https://m.media-amazon.com",
+          "https://cdn.plyr.io",
+          "https://heda.mads.workers.dev",
         ],
       },
     },
