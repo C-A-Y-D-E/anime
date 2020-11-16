@@ -31,7 +31,7 @@ exports.getOne = (Model, popObs) =>
     if (popObs)
       query = query.populate({
         path: popObs,
-        options: { sort: { "episode_no season": 1 } },
+        options: { sort: { episode_no: 1 } },
       });
     const doc = await query;
     if (!doc) return next(new AppError("No Anime Found", 404));
