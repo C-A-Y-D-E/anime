@@ -37,13 +37,13 @@ app.use(
           "https://m.media-amazon.com",
           "https://cdn.plyr.io",
         ],
+        "media-src": [
+          "'self'",
+          "https://cdn.plyr.io",
+          "https://heda.mads.workers.dev",
+        ],
+        "connect-src": ["'self'", "https://cdn.plyr.io"],
       },
-      "media-src": [
-        "'self'",
-        "https://cdn.plyr.io",
-        "https://heda.mads.workers.dev",
-      ],
-      "connect-src": ["'self'", "https://cdn.plyr.io"],
     },
   })
 ); // security http
