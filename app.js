@@ -36,9 +36,14 @@ app.use(
           "https://media.giphy.com",
           "https://m.media-amazon.com",
           "https://cdn.plyr.io",
-          "https://heda.mads.workers.dev",
         ],
       },
+      "media-src": [
+        "'self'",
+        "https://cdn.plyr.io",
+        "https://heda.mads.workers.dev",
+      ],
+      "connect-src": ["'self'", "https://cdn.plyr.io"],
     },
   })
 ); // security http
