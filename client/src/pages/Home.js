@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "../components/Slider";
 import Main from "../components/Main";
 import { Section } from "../globalStyles";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { bestAnimes } from "../store/actions/animes";
 import SliderSkeletion from "../components/skeletons/Slider";
-const Home = ({ animes, best }) => {
+const Home = () => {
+  const dispatch = useDispatch();
+  const animes = useSelector((states) => states.animes);
+  const best = useSelector((states) => states.best);
+  useEffect(() => {
+    dispatch(bestAnimes());
+  }, [dispatch]);
+
   return (
     <Section>
-      {animes.loading ? <SliderSkeletion /> : <Slider items={animes} />}
+      {best.loading ? <SliderSkeletion /> : <Slider best={best} />}
       <Main animes={animes} />
     </Section>
   );
 };
-const mapStateToProps = (states) => ({
-  animes: states.animes,
-  best: states.best,
-});
-export default connect(mapStateToProps)(Home);
+
+export default Home;

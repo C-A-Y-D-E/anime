@@ -13,13 +13,13 @@ exports.deleteAnime = handleFactory.deleteOne(Anime);
 exports.mustWatch = AsyncCatch(async (req, res, next) => {
   const animes = await Anime.find({
     $or: [
-      { _id: "5f68a936e010ce4e10fdf411" },
-      { _id: "5f68a936e010ce4e10fdf414" },
+      { _id: "5f68a936e010ce4e10fdf410" },
+      { _id: "5f68a936e010ce4e10fdf413" },
       { _id: "5f68a936e010ce4e10fdf415" },
-      { _id: "5f68a936e010ce4e10fdf41c" },
+      { _id: "5f68a936e010ce4e10fdf41e" },
       { _id: "5f68a936e010ce4e10fdf41d" },
     ],
-  }).select("title image_url");
+  }).select("title image_url description cover_url");
   return res.status(200).json({
     status: "success",
     data: animes,

@@ -17,53 +17,55 @@ import {
   Paragraph,
 } from "./styles";
 
-const Slider = ({ items }) => {
+const Slider = ({ best }) => {
   const width = useWindowWidth();
   const [page, setPage] = useState(0);
 
   return (
     <LazyLoad>
-      <SliderContainer className={"slider-instance"} height={"500px"}>
-        <SliderWrapper
-          width={width * items.results.length}
-          style={{
-            transform: `translateX(${-(page * width)}px)`,
-            transition: "transform ease-out 0.30s",
-            width: width * items.results.length + "px",
-          }}
-        >
-          {items &&
-            items.results.map((i, index) => {
-              return (
-                <Slide
-                  key={i.id}
-                  last={index === items.results.length - 1}
-                  index={index}
-                  item={i}
-                  width={width}
-                />
-              );
-            })}
-        </SliderWrapper>
+      {
+        <SliderContainer className={"slider-instance"} height={"500px"}>
+          <SliderWrapper
+            width={width * best.results.length}
+            style={{
+              transform: `translateX(${-(page * width)}px)`,
+              transition: "transform ease-out 0.30s",
+              width: width * best.results.length + "px",
+            }}
+          >
+            {best &&
+              best.results.map((i, index) => {
+                return (
+                  <Slide
+                    key={i.id}
+                    last={index === best.results.length - 1}
+                    index={index}
+                    item={i}
+                    width={width}
+                  />
+                );
+              })}
+          </SliderWrapper>
 
-        <div>
-          {page > 0 ? (
-            <ControlLeft onClick={() => setPage(page - 1)}>
-              <FiChevronLeft />
-            </ControlLeft>
-          ) : (
-            ""
-          )}
+          <div>
+            {page > 0 ? (
+              <ControlLeft onClick={() => setPage(page - 1)}>
+                <FiChevronLeft />
+              </ControlLeft>
+            ) : (
+              ""
+            )}
 
-          {page < items.results.length - 1 ? (
-            <ControlRight onClick={() => setPage(page + 1)}>
-              <FiChevronRight />
-            </ControlRight>
-          ) : (
-            ""
-          )}
-        </div>
-      </SliderContainer>
+            {page < best.results.length - 1 ? (
+              <ControlRight onClick={() => setPage(page + 1)}>
+                <FiChevronRight />
+              </ControlRight>
+            ) : (
+              ""
+            )}
+          </div>
+        </SliderContainer>
+      }
     </LazyLoad>
   );
 };
