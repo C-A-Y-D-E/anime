@@ -31,8 +31,10 @@ const UserModal = ({ onClose, data }) => {
           onSubmit={async (values) => {
             if (data) {
               dispatch(updateUser(data._id, values));
+              onClose(false);
             } else {
               dispatch(signup(values));
+              onClose(false);
             }
           }}
         >
@@ -80,7 +82,7 @@ const UserModal = ({ onClose, data }) => {
                   <h3>Cancel</h3>
                 </Cancel>
                 <Create type="submit">
-                  <h3>Create</h3>
+                  <h3>{data ? "Edit" : "CREATE"}</h3>
                 </Create>
               </ModalAction>
             </Form>

@@ -33,8 +33,10 @@ const EpisodeModal = ({ onClose, data }) => {
           onSubmit={async (values) => {
             if (data) {
               dispatch(updateEpisode(values.anime, values));
+              onClose(false);
             } else {
               dispatch(postEpisode(values.anime, values));
+              onClose(false);
             }
           }}
         >
@@ -88,7 +90,7 @@ const EpisodeModal = ({ onClose, data }) => {
                   <h3>Cancel</h3>
                 </Cancel>
                 <Create type="submit">
-                  <h3>Create</h3>
+                  <h3>{data ? "Edit" : "CREATE"}</h3>
                 </Create>
               </ModalAction>
             </Form>

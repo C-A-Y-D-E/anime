@@ -18,11 +18,11 @@ const {
   deleteUser,
   updateUser,
 } = require("../controllers/userController");
+router.patch("/resetpassword/:resetToken", resetPassword);
 router.post("/signup", signup);
 router.post("/login", login);
 router.get("/logout", logout);
 router.post("/forgotpassword", forgotPassword);
-router.patch("/resetpassword/:resetToken", resetPassword);
 
 router.use(checkAuth);
 router.patch("/updateme", uploadUserImage, resizeUserImage, updateMe);

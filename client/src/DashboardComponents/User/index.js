@@ -73,7 +73,7 @@ const Users = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeadItem>ID</TableHeadItem>
+            <TableHeadItem>ROLE</TableHeadItem>
             <TableHeadItem>NAME</TableHeadItem>
             <TableHeadItem>EMAIL</TableHeadItem>
             <TableHeadItem>DATE</TableHeadItem>

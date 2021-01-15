@@ -10,7 +10,6 @@ import {
 import rootReducer from "./reducers";
 import dashboardReducers from "./dashboardReducers";
 
-import logger from "redux-logger";
 const client = axios.create({
   baseURL: "/api/v1",
   responseType: "json",
@@ -19,7 +18,7 @@ const client = axios.create({
   ),
 });
 
-const middleware = [thunk, logger, axiosMiddleware(client)];
+const middleware = [thunk, axiosMiddleware(client)];
 const withDevTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(

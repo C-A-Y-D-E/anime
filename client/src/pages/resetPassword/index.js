@@ -24,7 +24,8 @@ const ResetPassword = () => {
           password: "",
           confirmPassword: "",
         }}
-        onSubmit={async (values) => {
+        onSubmit={(values) => {
+          debugger;
           setLoading(true);
 
           axios
@@ -72,7 +73,7 @@ const ResetPassword = () => {
             </FormField>
             <FormField>
               <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <Field name="confirmPassword" as={Input} type="confirmPassword" />
+              <Field name="confirmPassword" as={Input} type="password" />
               <ErrorMessage name="confirmPassword" component={Error} />
             </FormField>
 

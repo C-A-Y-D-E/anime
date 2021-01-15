@@ -35,8 +35,10 @@ const AnimeModal = ({ onClose, data }) => {
 
             if (data) {
               dispatch(updateAnime(data._id, values));
+              onClose(false);
             } else {
               dispatch(addAnime(values));
+              onClose(false);
             }
           }}
         >
@@ -90,7 +92,7 @@ const AnimeModal = ({ onClose, data }) => {
                   <h3>Cancel</h3>
                 </Cancel>
                 <Create type="submit">
-                  <h3>Create</h3>
+                  <h3>{data ? "Edit" : "CREATE"}</h3>
                 </Create>
               </ModalAction>
             </Form>

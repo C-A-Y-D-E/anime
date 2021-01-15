@@ -3,7 +3,6 @@ const AsyncCatch = require("../utils/AsyncCatch");
 const { promisify } = require("util");
 const AppError = require("../utils/AppError");
 const User = require("../models/userModel");
-const sendEmail = require("../utils/email");
 const Email = require("../utils/email");
 
 //token generater
@@ -38,7 +37,11 @@ exports.signup = AsyncCatch(async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
   const user = await User.create({ name, email, password, confirmPassword });
   const url = `${req.protocol}://${req.get("host")}/user`;
-  await new Email(user, url).sendWelcome();
+  try {
+    await new Email(user, url).sendWelcome();
+  } catch (error) {
+    console.log(error);
+  }
   createTokenSend(user, 200, req, res);
 });
 
@@ -175,6 +178,7 @@ exports.forgotPassword = AsyncCatch(async (req, res, next) => {
 });
 
 exports.resetPassword = AsyncCatch(async (req, res, next) => {
+  console.log(resetToken, "called");
   const { resetToken } = req.params;
   const decode = await promisify(jwt.verify)(
     resetToken,
@@ -184,6 +188,7 @@ exports.resetPassword = AsyncCatch(async (req, res, next) => {
   const user = await User.findOne({
     _id: decode.id,
   });
+  console.log(user);
   if (!user) next(new AppError("No User With This Token", 400));
   user.password = req.body.password;
   user.confirmPassword = req.body.confirmPassword;
