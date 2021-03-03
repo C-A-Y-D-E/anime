@@ -37,11 +37,7 @@ exports.signup = AsyncCatch(async (req, res, next) => {
   const { name, email, password, confirmPassword } = req.body;
   const user = await User.create({ name, email, password, confirmPassword });
   const url = `${req.protocol}://${req.get("host")}/user`;
-  try {
-    await new Email(user, url).sendWelcome();
-  } catch (error) {
-    console.log(error);
-  }
+
   createTokenSend(user, 200, req, res);
 });
 
